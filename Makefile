@@ -48,6 +48,10 @@ help: ## Show help
 shell: run ## Get a shell into the container
 	$(DOCKER) container exec -it $(CONTAINER) /bin/bash
 
+.PHONY: push
+push: $(BUILD) ## Push the image to DockerHub
+	$(DOCKER) push $(IMAGE)
+
 .PHONY: run
 run: $(BUILD) ## Run the container
 	if ! $(DOCKER) container inspect $(CONTAINER) > /dev/null 2>&1; then \

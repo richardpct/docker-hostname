@@ -20,6 +20,8 @@ syntax is as follows:
 ## Getting a shell access into the running container
     $ make shell
 
+## Pushing the image to DockerHub
+    $ make push
 ## Stopping the container
     $ make stop
 
