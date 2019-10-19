@@ -4,6 +4,7 @@ LABEL maintainer="richardpct"
 
 RUN apk add --no-cache \
     git \
+    curl \
     && go get github.com/richardpct/go-hostname
 
 EXPOSE 8080

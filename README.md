@@ -22,6 +22,7 @@ syntax is as follows:
 
 ## Pushing the image to DockerHub
     $ make push
+
 ## Stopping the container
     $ make stop
 
