@@ -5,8 +5,8 @@ VPATH          := dockerfile
 BUILD          := .build
 CONTAINER      := go-hostname
 IMAGE          := richardpct/$(CONTAINER)
-CONTAINER_PORT := 8080
-HOST_PORT      := 8080
+CONTAINER_PORT := 8888
+HOST_PORT      := 8888
 
 # If DOCKER does not exist then looks for in the PATH variable
 ifeq "$(wildcard $(DOCKER))" ""
@@ -46,7 +46,7 @@ help: ## Show help
 
 .PHONY: shell
 shell: run ## Get a shell into the container
-	$(DOCKER) container exec -it $(CONTAINER) /bin/bash
+	$(DOCKER) container exec -it $(CONTAINER) /bin/sh
 
 .PHONY: push
 push: $(BUILD) ## Push the image to DockerHub
