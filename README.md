@@ -12,7 +12,7 @@ syntax is as follows:
     $ make help
 
 ## Building the image
-    $ make build
+    $ make build TAG=v1.0.0
 
 ## Running the container
     $ make run
