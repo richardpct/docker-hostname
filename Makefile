@@ -3,8 +3,12 @@ AWK            := awk
 DOCKER         := /usr/local/bin/docker
 VPATH          := dockerfile
 BUILD          := .build
-CONTAINER      := go-hostname-env
-IMAGE          := richardpct/$(CONTAINER)
+CONTAINER      := go-hostname
+ifeq ($(shell [ -f $(BUILD) ] && echo exists), exists)
+TAG            = $(shell cat $(BUILD))
+endif
+TAG            ?= v1.0.0
+IMAGE          := richardpct/$(CONTAINER):$(TAG)
 CONTAINER_PORT := 8888
 HOST_PORT      := 8888
 
@@ -69,8 +73,9 @@ $(BUILD): Dockerfile
 	$(call docker-image-rm)
 
 	cd dockerfile && \
-	$(DOCKER) build -t $(IMAGE) .
+	$(DOCKER) build --build-arg tag=$(TAG) -t $(IMAGE) .
 	@touch $@
+	echo $(TAG) > $@
 
 .PHONY: clean
 clean: stop ## Delete the image
