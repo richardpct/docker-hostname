@@ -7,8 +7,8 @@ CONTAINER      := go-hostname
 ifeq ($(shell [ -f $(BUILD) ] && echo exists), exists)
 TAG            = $(shell cat $(BUILD))
 endif
-TAG            ?= v1.0.0
-IMAGE          := richardpct/$(CONTAINER):$(TAG)
+TAG            ?= 01
+IMAGE          := richardpct/$(CONTAINER)$(TAG)
 CONTAINER_PORT := 8888
 HOST_PORT      := 8888
 

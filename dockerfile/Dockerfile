@@ -1,10 +1,12 @@
 FROM golang:alpine AS build
 LABEL maintainer="richardpct"
-ARG tag="v1.0.0"
-ENV GO111MODULE on
+ARG tag="01"
 RUN apk add --no-cache \
     git \
-    && go get github.com/richardpct/go-hostname@${tag}
+    make \
+    && git clone https://github.com/richardpct/go-hostname
+WORKDIR /go/go-hostname/hostname${tag}
+RUN make && mv go-hostname /go/bin
 
 FROM alpine
 COPY --from=build /go/bin/go-hostname /bin/go-hostname
